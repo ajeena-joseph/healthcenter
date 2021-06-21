@@ -1,0 +1,285 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <title>Health Template - News Page</title>
+<!--
+
+Template 2098 Health
+
+http://www.tooplate.com/view/2098-health
+
+-->
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="Tooplate">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+     <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+     <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+
+     <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static 'css/tooplate-style.css' %}">
+
+</head>
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="">
+
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+
+          </div>
+     </section>
+
+
+     <!-- HEADER -->
+     <header>
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-3">
+                         <p>Welcome to a Professional Health Care</p>
+                    </div>
+
+                    <div class="col-md-8 col-sm-9 text-align-right">
+                         <span class="phone-icon"><i class="fa fa-phone"></i> 010-060-0160</span>
+                         <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 6:00 AM - 10:00 PM (Mon-Fri)</span>
+                         <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="#">info@company.com</a></span>
+                    </div>
+
+               </div>
+          </div>
+     </header>
+
+
+     <!-- MENU -->
+     <section class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="index.html" class="navbar-brand"><i class="fa fa-h-square"></i>ealth Center</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="/" class="smoothScroll">Home</a></li>
+                                    {% if user.is_authenticated %}
+									<li><strong>Hello,{{user.username}}</strong></li>
+									<li><a href="{% url 'logout' %}">Logout</a></li>
+
+									{% endif %}
+
+
+
+
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+
+     <!-- Register -->
+    <section id="appointment" data-stellar-background-ratio="3">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-6">
+                         <img src="{% static 'images/appointment-image.jpg' %}" class="img-responsive" alt="">
+
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                         <!-- CONTACT FORM HERE -->
+                         <form id="appointment-form" role="form" method="post" action="">
+                              {% csrf_token %}
+                              <!-- SECTION TITLE -->
+                              <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                                   <h2>Make an Appointment</h2>
+                              </div>
+
+                              <div class="wow fadeInUp" data-wow-delay="0.8s">
+                                   <div class="col-md-6 col-sm-6">
+                                        <label for="name">Name</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Full Name">
+                                   </div>
+                                   <div class="col-md-6 col-sm-6">
+                                        <label for="telephone">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone">
+                                   </div>
+
+
+
+                                   <div class="col-md-6 col-sm-6">
+                                        <label for="date">Select Date</label>
+                                        <input type="date" name="date" value="" class="form-control">
+                                   </div>
+                                   <div class="col-md-6 col-sm-6">
+                                        <label for="select">Select Time</label>
+
+                                             <select name="time" class="form-control">
+
+
+                                                  <option>9 AM to 10 AM</option>
+                                                  <option>10 AM to 11 AM</option>
+                                                  <option>11 AM to 12 PM</option>
+                                                  <option>3 PM to 4PM</option>
+                                                  <option>6 PM to 10 PM</option>
+
+
+                                              </select>
+                                   </div>
+                                   <div class="col-md-6 col-sm-6">
+                                        <label for="select"> Select Department</label>
+
+                                             <select name="department" class="form-control">
+                                             {% for i in department %}
+                                                  <option>{{i.name}}</option>
+                                             {% endfor %}
+                                              </select>
+                                   </div>
+
+                                   <div class="col-md-6 col-sm-6">
+                                        <label for="select">Select Doctor</label>
+
+                                             <select name="doctor" class="form-control">
+                                                {% for i in doctor %}
+                                                  <option>{{i.name}}</option>
+                                                {% endfor %}
+                                              </select>
+                                   </div>
+
+
+                                   <div class="col-md-12 col-sm-12">
+                                        <label for="symptoms">Symptoms</label>
+                                        <input type="text" class="form-control" id="symptoms" name="symptoms" placeholder="Your symptoms">
+                                        <label for="additionalissues">Additonal issues</label>
+                                        <textarea class="form-control" rows="3" id="additionalissues" name="additionalissues" placeholder="Your Additional Issues"></textarea>
+                                        <div class="form-group form-check">
+                                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                             <label class="form-check-label" for="exampleCheck1">accept all terms and conditions</label>
+                                        </div>
+                                        <button type="submit" class="form-control" id="cf-submit" name="submit">Submit </button>
+                                   </div>
+                              </div>
+                        </form>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- FOOTER -->
+     <footer data-stellar-background-ratio="5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="footer-thumb">
+                              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
+                              <p></p>
+
+                              <div class="contact-info">
+                                   <p><i class="fa fa-phone"></i>0484-241-016</p>
+                                   <p><i class="fa fa-envelope-o"></i> <a href="#">info@company.com</a></p>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="footer-thumb">
+                              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Our Loction</h4>
+                              <div class="latest-stories">
+
+                                   <div class="stories-info">
+                                        <a href="#"><h5>Heath center</h5></a>
+                                        <p>Merto Piller 333</p>
+                                        <p> NH-34 Bypass </p>
+                                        <p>Kochi - 602448</p>
+                                        <p>kerala</p>
+                                   </div>
+                              </div>
+
+
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="footer-thumb">
+                              <div class="opening-hours">
+                                   <h4 class="wow fadeInUp" data-wow-delay="0.4s">Opening Hours</h4>
+                                   <p>Monday - Friday <span>06:00 AM - 10:00 PM</span></p>
+                                   <p>Saturday <span>09:00 AM - 08:00 PM</span></p>
+                                   <p>Sunday <span>Closed</span></p>
+                              </div>
+
+                              <ul class="social-icon">
+                                   <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-instagram"></a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12 border-top">
+                         <div class="col-md-4 col-sm-6">
+                              <div class="copyright-text">
+                                   <p>Copyright &copy; 2021 mint Company
+
+                                   | Design: Tooplate</p>
+                              </div>
+                         </div>
+                         <div class="col-md-6 col-sm-6">
+                              <div class="footer-link">
+                                   <a href="#">Laboratory Tests</a>
+                                   <a href="#">Departments</a>
+                                   <a href="#">Insurance Policy</a>
+                                   <a href="#">Careers</a>
+                              </div>
+                         </div>
+                         <div class="col-md-2 col-sm-2 text-align-center">
+                              <div class="angle-up-btn">
+                                  <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"><i class="fa fa-angle-up"></i></a>
+                              </div>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </footer>
+
+
+     <!-- SCRIPTS -->
+     <script src="{% static 'js/jquery.js' %}"></script>
+     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'js/jquery.sticky.js' %}"></script>
+     <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+     <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+     <script src="{% static 'js/magnific-popup-options.js' %}"></script>
+     <script src="{% static 'js/wow.min.js' %}"></script>
+     <script src="{% static 'js/smoothscroll.js' %}"></script>
+     <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+     <script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>
